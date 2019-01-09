@@ -1,7 +1,6 @@
 apply plugin: 'com.android.application'
-
+apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android'
-
 apply plugin: 'kotlin-android-extensions'
 
 android {
@@ -28,6 +27,12 @@ dependencies {
     implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.appcompat:appcompat:1.1.0-alpha01'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.0-alpha3'
+
+    // arch navigation
+    implementation 'android.arch.navigation:navigation-fragment:1.0.0-alpha09'
+    implementation("android.arch.navigation:navigation-ui:1.0.0-alpha07") {
+        exclude group: 'com.android.support', module: 'design'
+    }
 
     // di
     implementation "com.google.dagger:dagger:$rootProject.ext.daggerVersion"

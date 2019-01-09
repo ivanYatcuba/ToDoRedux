@@ -1,9 +1,9 @@
-package com.lanars.todoredux
+package com.lanars.todoredux.flow.main
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
+import com.lanars.todoredux.R
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
