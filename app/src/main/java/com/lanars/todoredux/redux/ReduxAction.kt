@@ -1,4 +1,3 @@
 package com.lanars.todoredux.redux
 
-interface ReduxAction {
-}
+interface ReduxAction

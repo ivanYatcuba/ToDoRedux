@@ -1,5 +1,7 @@
 package com.lanars.todoredux.redux
 
+import com.lanars.todoredux.redux.store.ReduxStore
+
 abstract class ReduxMiddleware<S : ReduxState, A : ReduxAction, in R : ReduxStore<S, A>> {
 
     abstract fun doBeforeDispatch(store: R, action: A)

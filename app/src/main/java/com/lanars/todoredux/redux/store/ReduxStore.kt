@@ -1,4 +1,8 @@
-package com.lanars.todoredux.redux
+package com.lanars.todoredux.redux.store
+
+import com.lanars.todoredux.redux.ReduxAction
+import com.lanars.todoredux.redux.ReduxMiddleware
+import com.lanars.todoredux.redux.ReduxState
 
 interface ReduxStore<S : ReduxState, A : ReduxAction> {
 
