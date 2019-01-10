@@ -2,6 +2,7 @@ package com.lanars.todoredux.flow.main
 
 import android.os.Bundle
 import com.lanars.todoredux.R
+import com.lanars.todoredux.android.base.BaseActivity
 
 class MainActivity : BaseActivity() {
 

@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.lanars.todoredux.R
+import com.lanars.todoredux.android.base.BaseFragment
 
 class MainFragment : BaseFragment() {
 

@@ -1,4 +1,4 @@
-package com.lanars.todoredux.flow.main
+package com.lanars.todoredux.android.base
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

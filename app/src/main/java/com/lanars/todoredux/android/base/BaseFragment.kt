@@ -1,4 +1,4 @@
-package com.lanars.todoredux.flow.main
+package com.lanars.todoredux.android.base
 
 import androidx.fragment.app.Fragment
 import com.lanars.todoredux.di.Injectable
