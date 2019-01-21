@@ -9,9 +9,9 @@ import com.lanars.todoredux.flow.main.model.ToDo
 import kotlinx.android.synthetic.main.item_todo.view.*
 import java.util.*
 
-class ToDoRecyclerViewAdapter : RecyclerView.Adapter<ToDoRecyclerViewAdapter.ToDoViewHolder>() {
+class ToDoRecyclerViewAdapter(val onToDoClicked: (ToDo, Int) -> Unit) : RecyclerView.Adapter<ToDoRecyclerViewAdapter.ToDoViewHolder>() {
 
-    private var data: List<ToDo> = ArrayList()
+    var data: List<ToDo> = ArrayList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ToDoViewHolder {
         return ToDoViewHolder(
@@ -26,12 +26,13 @@ class ToDoRecyclerViewAdapter : RecyclerView.Adapter<ToDoRecyclerViewAdapter.ToD
 
     override fun getItemCount() = data.size
 
-    override fun onBindViewHolder(holder: ToDoViewHolder, position: Int) = holder.bind(data[position])
+    override fun onBindViewHolder(holder: ToDoViewHolder, position: Int) = holder.bind(data[position], position)
 
-    class ToDoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class ToDoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        fun bind(item: ToDo) = with(itemView) {
+        fun bind(item: ToDo, position: Int) = with(itemView) {
             tvToDo.text = item.title
+            itemView.setOnClickListener { onToDoClicked(item, position) }
             if (item.completed) {
                 ivDone.visibility = View.VISIBLE
             } else {

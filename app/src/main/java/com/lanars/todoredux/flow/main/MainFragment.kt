@@ -14,7 +14,9 @@ import kotlinx.android.synthetic.main.fragment_main.*
 class MainFragment : BaseFragment() {
 
     private val adapter: ToDoRecyclerViewAdapter by lazy {
-        ToDoRecyclerViewAdapter()
+        ToDoRecyclerViewAdapter { todo, position ->
+            reduxStore.dispatch(AppAction.ToggleToDoComplete(todo, position))
+        }
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -33,6 +35,9 @@ class MainFragment : BaseFragment() {
     override fun onNewState(state: AppState) {
         activity?.runOnUiThread {
             state.mainState.todos?.let {
+                if (state.mainState.changedItemIndex > -1) {
+                    Toast.makeText(activity, "Item updated!", Toast.LENGTH_LONG).show()
+                }
                 adapter.setItems(it)
             }
             state.mainState.error?.let {

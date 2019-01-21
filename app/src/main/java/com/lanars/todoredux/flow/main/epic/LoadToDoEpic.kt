@@ -1,7 +1,8 @@
-package com.lanars.todoredux.flow.main
+package com.lanars.todoredux.flow.main.epic
 
 import com.lanars.todoredux.AppAction
 import com.lanars.todoredux.AppState
+import com.lanars.todoredux.flow.main.ToDoRepository
 import com.lanars.todoredux.redux.middleware.epic.Epic
 import com.lanars.todoredux.redux.store.ReduxStore
 import io.reactivex.Observable
@@ -18,7 +19,7 @@ class LoadToDoEpic(private val toDoRepository: ToDoRepository) : Epic<AppState, 
                             .subscribeOn(Schedulers.io())
                             .toObservable()
                             .map { AppAction.ToDosLoadedAction(it, null) }
+                            .onErrorResumeNext(Function { t -> Observable.just(AppAction.ToDosLoadedAction(null, t)) })
                 }
-                .onErrorResumeNext(Function { t -> Observable.just(AppAction.ToDosLoadedAction(null, t)) })
     }
 }

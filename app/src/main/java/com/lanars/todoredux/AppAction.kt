@@ -9,8 +9,9 @@ sealed class AppAction : ReduxAction {
 
     class ToDosLoadedAction(val todos: List<ToDo>?, val error: Throwable?) : AppAction()
 
-    class ErrorDispatchAction(val throwable: Throwable) : AppAction()
+    class ToDosChangedAction(val todo: ToDo?, val error: Throwable?, val changeId: Int) : AppAction()
 
+    class ToggleToDoComplete(val todo: ToDo, val itemIndex: Int) : AppAction()
 
 }
 
