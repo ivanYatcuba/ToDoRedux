@@ -13,19 +13,31 @@ import kotlinx.android.synthetic.main.fragment_main.*
 
 class MainFragment : BaseFragment() {
 
+    private val adapter: ToDoRecyclerViewAdapter by lazy {
+        ToDoRecyclerViewAdapter()
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_main, container, false)
     }
 
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        reduxStore.dispatch(AppAction.LoadToDosAction())
+    }
+
     override fun initViewListeners() {
-        btnAction.setOnClickListener {
-            reduxStore.dispatch(AppAction.DisplayToast("Hi!"))
-        }
+        rvToDos.adapter = adapter
     }
 
     override fun onNewState(state: AppState) {
         activity?.runOnUiThread {
-            Toast.makeText(activity, state.mainState.message, Toast.LENGTH_LONG).show()
+            state.mainState.todos?.let {
+                adapter.setItems(it)
+            }
+            state.mainState.error?.let {
+                Toast.makeText(activity, it.localizedMessage, Toast.LENGTH_LONG).show()
+            }
         }
     }
 }

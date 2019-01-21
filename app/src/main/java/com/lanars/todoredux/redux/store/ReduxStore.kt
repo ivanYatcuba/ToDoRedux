@@ -1,5 +1,6 @@
 package com.lanars.todoredux.redux.store
 
+import androidx.annotation.WorkerThread
 import com.lanars.todoredux.redux.ReduxAction
 import com.lanars.todoredux.redux.ReduxState
 import com.lanars.todoredux.redux.middleware.ReduxMiddleware
@@ -19,6 +20,7 @@ interface ReduxStore<S : ReduxState, A : ReduxAction> {
     fun unsubscribe(subscriber: Subscriber<S>)
 
     interface Subscriber<in S> {
+        @WorkerThread
         fun onNewState(state: S)
     }
 }
