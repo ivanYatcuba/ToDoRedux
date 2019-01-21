@@ -1,5 +1,7 @@
-package com.lanars.todoredux.redux
+package com.lanars.todoredux.redux.middleware
 
+import com.lanars.todoredux.redux.ReduxAction
+import com.lanars.todoredux.redux.ReduxState
 import com.lanars.todoredux.redux.store.ReduxStore
 
 abstract class ReduxMiddleware<S : ReduxState, A : ReduxAction, in R : ReduxStore<S, A>> {
