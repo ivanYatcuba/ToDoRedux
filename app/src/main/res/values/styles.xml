@@ -1,11 +1,30 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="GreenAppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorPrimary">@color/greenColorPrimary</item>
+        <item name="colorPrimaryDark">@color/greenColorPrimaryDark</item>
+        <item name="colorAccent">@color/greenColorAccent</item>
+        <item name="todoCompleteDrawable">@drawable/ic_done</item>
+    </style>
+
+    <style name="BlueAppTheme" parent="Theme.AppCompat">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/blueColorPrimary</item>
+        <item name="colorPrimaryDark">@color/blueColorPrimaryDark</item>
+        <item name="colorAccent">@color/blueColorAccent</item>
+        <item name="todoCompleteDrawable">@drawable/ic_baseline_done</item>
+    </style>
+
+    <style name="GreenButton">
+        <item name="android:background">@drawable/button_green_and_white</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="BlueButton">
+        <item name="android:background">@drawable/button_black_and_blue</item>
+        <item name="android:textColor">@android:color/white</item>
     </style>
 
 </resources>

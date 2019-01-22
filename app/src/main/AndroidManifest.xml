@@ -13,9 +13,11 @@
         android:name=".ReduxApplication"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
+        android:theme="@style/GreenAppTheme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
-        <activity android:name=".flow.main.MainActivity">
+        <activity
+            android:name=".flow.main.MainActivity"
+            android:theme="@style/GreenAppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
