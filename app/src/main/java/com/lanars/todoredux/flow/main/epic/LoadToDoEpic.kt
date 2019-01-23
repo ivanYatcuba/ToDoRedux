@@ -18,7 +18,7 @@ class LoadToDoEpic(private val toDoRepository: ToDoRepository) : Epic<AppState, 
                     toDoRepository.loadToDos()
                             .subscribeOn(Schedulers.io())
                             .toObservable()
-                            .map { AppAction.ToDosLoadedAction(it.subList(0, 50), null) }
+                            .map { totdos -> AppAction.ToDosLoadedAction(totdos.subList(0, 50), null) }
                             .onErrorResumeNext(Function { t -> Observable.just(AppAction.ToDosLoadedAction(null, t)) })
                 }
     }

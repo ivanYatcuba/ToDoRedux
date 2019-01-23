@@ -1,7 +1,6 @@
 package com.lanars.todoredux.flow.main
 
 import android.os.Bundle
-import android.preference.PreferenceManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,9 +9,8 @@ import com.lanars.todoredux.AppAction
 import com.lanars.todoredux.AppState
 import com.lanars.todoredux.R
 import com.lanars.todoredux.android.base.BaseFragment
-import com.lanars.todoredux.flow.main.MainActivity.Companion.USE_DARK_THEME
+import com.lanars.todoredux.flow.main.model.Theme
 import kotlinx.android.synthetic.main.fragment_main.*
-
 
 class MainFragment : BaseFragment() {
 
@@ -34,12 +32,10 @@ class MainFragment : BaseFragment() {
     override fun initViewListeners() {
         rvToDos.adapter = adapter
         bgreenTheme.setOnClickListener {
-            PreferenceManager.getDefaultSharedPreferences(activity).edit().putBoolean(USE_DARK_THEME, false).commit()
-            activity?.recreate()
+            reduxStore.dispatch(AppAction.ChangeThemeAction(Theme.GREEN_THEME))
         }
         bblueTheme.setOnClickListener {
-            PreferenceManager.getDefaultSharedPreferences(activity).edit().putBoolean(USE_DARK_THEME, true).commit()
-            activity?.recreate()
+            reduxStore.dispatch(AppAction.ChangeThemeAction(Theme.DARK_BLUE_THEME))
         }
     }
 
@@ -47,7 +43,7 @@ class MainFragment : BaseFragment() {
         activity?.runOnUiThread {
             state.mainState.todos?.let {
                 if (state.mainState.changedItemIndex > -1) {
-                    Toast.makeText(activity, "Item updated!", Toast.LENGTH_LONG).show()
+                    Toast.makeText(activity, getString(R.string.toast_item_updated), Toast.LENGTH_LONG).show()
                 }
                 adapter.setItems(it)
             }

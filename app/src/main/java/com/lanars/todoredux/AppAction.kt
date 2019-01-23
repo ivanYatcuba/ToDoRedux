@@ -1,5 +1,6 @@
 package com.lanars.todoredux
 
+import com.lanars.todoredux.flow.main.model.Theme
 import com.lanars.todoredux.flow.main.model.ToDo
 import com.lanars.todoredux.redux.ReduxAction
 
@@ -12,6 +13,8 @@ sealed class AppAction : ReduxAction {
     class ToDosChangedAction(val todo: ToDo?, val error: Throwable?, val changeId: Int) : AppAction()
 
     class ToggleToDoComplete(val todo: ToDo, val itemIndex: Int) : AppAction()
+
+    class ChangeThemeAction(val theme: Theme) : AppAction()
 
 }
 

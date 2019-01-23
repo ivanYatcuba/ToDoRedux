@@ -2,4 +2,5 @@
     <string name="app_name">ToDoRedux</string>
     <string name="theme_green_and_white">Theme Green and White</string>
     <string name="theme_black_and_blue">Theme Black and Blue</string>
+    <string name="toast_item_updated">Item updated!</string>
 </resources>

@@ -2,6 +2,7 @@ package com.lanars.todoredux.di.module
 
 import com.lanars.todoredux.AppAction
 import com.lanars.todoredux.AppState
+import com.lanars.todoredux.ReduxApplication
 import com.lanars.todoredux.flow.main.epic.LoadToDoEpic
 import com.lanars.todoredux.flow.main.epic.PatchToDoEpic
 import com.lanars.todoredux.redux.AppReducer
@@ -25,12 +26,14 @@ class ReduxModule {
 
     @Singleton
     @Provides
-    fun provideReduxStore(reducer: AppReducer, loadToDoEpic: LoadToDoEpic, patchToDoEpic: PatchToDoEpic): ReduxStore<AppState, AppAction> {
-        val store = Store(currentState = AppState.initialState, reducer = { state, action: AppAction ->
+    fun provideReduxStore(application: ReduxApplication,
+                          reducer: AppReducer,
+                          loadToDoEpic: LoadToDoEpic,
+                          patchToDoEpic: PatchToDoEpic): ReduxStore<AppState, AppAction> {
+        val store = Store(currentState = AppState.getInitialState(application), reducer = { state, action: AppAction ->
             reducer.reduce(action = action, state = state)
         })
         store.applyMiddleware(createEpicMiddleware(combineEpics(loadToDoEpic, patchToDoEpic), store), ActionLoggerMiddleware())
         return store
     }
-
 }
