@@ -4,13 +4,12 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.lanars.todoredux.AppAction
 import com.lanars.todoredux.AppState
-import com.lanars.todoredux.di.Injectable
 import com.lanars.todoredux.redux.store.ReduxStore
-import javax.inject.Inject
+import org.koin.android.ext.android.inject
 
-abstract class BaseFragment : Fragment(), Injectable, ReduxStore.Subscriber<AppState> {
-    @Inject
-    lateinit var reduxStore: ReduxStore<AppState, AppAction>
+abstract class BaseFragment : Fragment(), ReduxStore.Subscriber<AppState> {
+
+    val reduxStore: ReduxStore<AppState, AppAction> by inject()
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
