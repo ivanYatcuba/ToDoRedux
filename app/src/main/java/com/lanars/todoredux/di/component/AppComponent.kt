@@ -1,6 +1,5 @@
 package com.lanars.todoredux.di.component
 
-import android.app.Application
 import com.lanars.todoredux.ReduxApplication
 import com.lanars.todoredux.di.module.*
 import dagger.BindsInstance
@@ -23,7 +22,7 @@ interface AppComponent {
     interface Builder {
 
         @BindsInstance
-        fun application(application: Application): Builder
+        fun application(application: ReduxApplication): Builder
 
         fun build(): AppComponent
     }

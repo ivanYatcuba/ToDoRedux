@@ -36,8 +36,6 @@ abstract class BaseActivity : AppCompatActivity(), HasSupportFragmentInjector, R
             }
         }, true)
 
-        onNewState(reduxStore.getState())
-
         reduxStore.subscribe(this)
     }
 

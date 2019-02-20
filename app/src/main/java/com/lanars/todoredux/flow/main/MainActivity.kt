@@ -8,10 +8,11 @@ import com.lanars.todoredux.flow.main.model.Theme
 
 class MainActivity : BaseActivity() {
 
-    var theme: Theme? = null
+    var theme: Theme? = Theme.GREEN_THEME
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setCurrentTheme(Theme.valueOf(reduxStore.getState().theme))
         setContentView(R.layout.activity_main)
     }
 
@@ -19,11 +20,18 @@ class MainActivity : BaseActivity() {
         val theme = Theme.valueOf(state.theme)
 
         if (theme != this.theme) {
-            when (theme) {
-                Theme.GREEN_THEME -> setTheme(R.style.GreenAppTheme)
-                Theme.DARK_BLUE_THEME -> setTheme(R.style.BlueAppTheme)
+            setCurrentTheme(theme)
+            runOnUiThread {
+                recreate()
             }
-            recreate()
         }
+    }
+
+    private fun setCurrentTheme(theme: Theme) {
+        when (theme) {
+            Theme.GREEN_THEME -> setTheme(R.style.GreenAppTheme)
+            Theme.DARK_BLUE_THEME -> setTheme(R.style.BlueAppTheme)
+        }
+        this.theme = theme
     }
 }
